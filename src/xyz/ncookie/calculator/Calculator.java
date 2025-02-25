@@ -16,6 +16,10 @@ public class Calculator {
         if (a < 0 || b < 0) {
             System.out.println("0을 포함한 양의 정수만 입력할 수 있습니다.");
         }
+
+        System.out.print("사칙연산 기호 입력: ");
+        char operator = sc.next().charAt(0);
+        System.out.println(operator);
     }
 
 }
