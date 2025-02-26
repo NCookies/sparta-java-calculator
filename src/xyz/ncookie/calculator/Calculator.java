@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class Calculator {
 
-    private Queue<Integer> resultQueue = new LinkedList<>();
+    protected Queue<Number> resultQueue = new LinkedList<>();
 
     public Optional<Integer> calculate(int a, int b, char operator) {
         int result = 0;     // 연산 결과
@@ -52,11 +52,11 @@ public class Calculator {
         }
     }
 
-    public Queue<Integer> getResultQueue() {
+    public Queue<Number> getResultQueue() {
         return resultQueue;
     }
 
-    public void setResultQueue(Queue<Integer> resultQueue) {
+    public void setResultQueue(Queue<Number> resultQueue) {
         this.resultQueue = resultQueue;
     }
 
