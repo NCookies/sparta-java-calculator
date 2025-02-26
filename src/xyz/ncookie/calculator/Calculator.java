@@ -1,8 +1,12 @@
 package xyz.ncookie.calculator;
 
+import java.util.LinkedList;
 import java.util.Optional;
+import java.util.Queue;
 
 public class Calculator {
+
+    private Queue<Integer> resultQueue = new LinkedList<>();
 
     public Optional<Integer> calculate(int a, int b, char operator) {
         int result = 0;     // 연산 결과
@@ -40,11 +44,24 @@ public class Calculator {
 
         // 정상적으로 연산이 수행되었을 때에만 결과 출력
         if (isResultValid) {
+            resultQueue.offer(result);
             return Optional.of(result);
         } else {
             // 연산 도중 문제가 발생했다면 null 반환
             return Optional.empty();
         }
+    }
+
+    public Queue<Integer> getResultQueue() {
+        return resultQueue;
+    }
+
+    public void setResultQueue(Queue<Integer> resultQueue) {
+        this.resultQueue = resultQueue;
+    }
+
+    public void removeFirstElementOfResultQueue() {
+        System.out.println("첫 번째 데이터 삭제: " + resultQueue.remove());
     }
 
 }

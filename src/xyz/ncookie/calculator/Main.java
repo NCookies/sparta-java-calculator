@@ -42,6 +42,7 @@ public class Main {
                 break;
             }
 
+            System.out.println("연산 결과 데이터: " + calculator.getResultQueue());
             System.out.println(SEPARATOR);
 
         }
