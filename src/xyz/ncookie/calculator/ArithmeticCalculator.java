@@ -14,11 +14,6 @@ public class ArithmeticCalculator {
     public <T> Optional<BigDecimal> calculate(T a, T b, OperatorType operatorType) {
         BigDecimal result;     // 연산 결과
 
-        if (operatorType == null) {
-            System.out.println("올바르지 않은 연산자 입력입니다.");
-            return Optional.empty();
-        }
-
         // 어떤 데이터 타입이 들어오더라도 BigDecimal 타입으로 변환
         BigDecimal bdA = new BigDecimal(String.valueOf(a));
         BigDecimal bdB = new BigDecimal(String.valueOf(b));
@@ -45,7 +40,11 @@ public class ArithmeticCalculator {
     }
 
     public void removeFirstElementOfResultQueue() {
-        System.out.println("첫 번째 데이터 삭제: " + resultQueue.remove());
+        if (!resultQueue.isEmpty()) {
+            System.out.println("첫 번째 데이터 삭제: " + resultQueue.remove());
+        } else {
+            System.out.println("현재 큐가 비어있습니다");
+        }
     }
 
 }
