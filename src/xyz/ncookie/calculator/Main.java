@@ -2,6 +2,7 @@ package xyz.ncookie.calculator;
 
 import xyz.ncookie.calculator.data.OperatorType;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -48,6 +49,10 @@ public class Main {
             }
 
             System.out.println("연산 결과 데이터: " + arithmeticCalculator.getResultQueue());
+            List<Integer> resultsBiggerThanInput = arithmeticCalculator.getResultQueue().stream()
+                    .filter(v -> v > a && v > b)
+                    .toList();
+            System.out.println("입력값보다 큰 연산 결과 데이터: " + resultsBiggerThanInput);
             System.out.println(SEPARATOR);
 
         }
