@@ -2,33 +2,42 @@ package xyz.ncookie.calculator;
 
 import xyz.ncookie.calculator.data.OperatorType;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.LinkedList;
 import java.util.Optional;
+import java.util.Queue;
 
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator {
 
-    public <T extends Number> Optional<Number> calculate(T a, T b, OperatorType operatorType) {
-        Number result = null;     // 연산 결과
-        boolean isResultValid = false;  // 연산 도중 문제 여부 flag
+    protected Queue<BigDecimal> resultQueue = new LinkedList<>();
+
+    public <T extends Number> Optional<BigDecimal> calculate(T a, T b, OperatorType operatorType) {
+        BigDecimal result = BigDecimal.ZERO;     // 연산 결과
+        boolean isResultValid = false;           // 연산 도중 문제 여부 flag
+
+        BigDecimal bdA = new BigDecimal(String.valueOf(a));
+        BigDecimal bdB = new BigDecimal(String.valueOf(b));
 
         switch (operatorType) {
             case ADD:
-                result = a.doubleValue() + b.doubleValue();
+                result = bdA.add(bdB);
                 isResultValid = true;
                 break;
             case SUB:
-                result = a.doubleValue() - b.doubleValue();
+                result = bdA.subtract(bdB);
                 isResultValid = true;
                 break;
             case MUL:
-                result = a.doubleValue() * b.doubleValue();
+                result = bdA.multiply(bdB);
                 isResultValid = true;
                 break;
             case DIV:
-                if (b.doubleValue() == 0) {
+                if (bdB.equals(BigDecimal.ZERO)) {
                     System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                     break;
                 }
-                result = a.doubleValue() / b.doubleValue();
+                result = bdA.divide(bdB, RoundingMode.HALF_EVEN);
                 isResultValid = true;
                 break;
             default:
@@ -45,12 +54,16 @@ public class ArithmeticCalculator extends Calculator {
         }
     }
 
-    public Optional<Integer> add(Integer a, Integer b, OperatorType operatorType) {
-        return Optional.empty();
+    public Queue<BigDecimal> getResultQueue() {
+        return resultQueue;
     }
 
-    public Optional<Double> add(Double a, Double b, OperatorType operatorType) {
-        return Optional.empty();
+    public void setResultQueue(Queue<BigDecimal> resultQueue) {
+        this.resultQueue = resultQueue;
+    }
+
+    public void removeFirstElementOfResultQueue() {
+        System.out.println("첫 번째 데이터 삭제: " + resultQueue.remove());
     }
 
 }

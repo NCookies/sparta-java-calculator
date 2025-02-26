@@ -2,6 +2,7 @@ package xyz.ncookie.calculator;
 
 import xyz.ncookie.calculator.data.OperatorType;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -19,23 +20,16 @@ public class Main {
 
             // 사용자로부터 두 정수 입력 받기
             System.out.print("첫 번째 양의 정수 입력: ");
-            double a = sc.nextDouble();
+            BigDecimal input1 = new BigDecimal(sc.next());
 
             System.out.print("두 번째 양의 정수 입력: ");
-            double b = sc.nextDouble();
-
-            // 입력 조건에 맞지 않는다면 처음부터
-            if (a < 0 || b < 0) {
-                System.out.println("0을 포함한 양의 정수만 입력할 수 있습니다.");
-                System.out.println(SEPARATOR);
-                continue;
-            }
+            BigDecimal input2 = new BigDecimal(sc.next());
 
             System.out.print("사칙연산 기호 입력: ");
             String operatorStr = sc.next();
 
             // Calculator 연산 수행
-            Optional<Number> optional = arithmeticCalculator.calculate(a, b, OperatorType.getOperator(operatorStr));
+            Optional<BigDecimal> optional = arithmeticCalculator.calculate(input1, input2, OperatorType.getOperator(operatorStr));
             optional.ifPresent(result -> System.out.println("계산 결과: " + result));
 
             // "exit"를 입력받으면 루프 종료
@@ -46,8 +40,8 @@ public class Main {
             }
 
             System.out.println("연산 결과 데이터: " + arithmeticCalculator.getResultQueue());
-            List<Number> resultsBiggerThanInput = arithmeticCalculator.getResultQueue().stream()
-                    .filter(v -> v.doubleValue() > a && v.doubleValue() > b)
+            List<BigDecimal> resultsBiggerThanInput = arithmeticCalculator.getResultQueue().stream()
+                    .filter(v -> v.compareTo(input1) > 0 && v.compareTo(input2) > 0)
                     .toList();
             System.out.println("입력값보다 큰 연산 결과 데이터: " + resultsBiggerThanInput);
             System.out.println(SEPARATOR);
