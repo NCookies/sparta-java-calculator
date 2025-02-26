@@ -1,5 +1,7 @@
 package xyz.ncookie.calculator;
 
+import xyz.ncookie.calculator.data.OperatorType;
+
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -10,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Calculator calculator = new Calculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
 
         // "exit" 키워드 입력 받기 전까지는 무한루프
         while (true) {
@@ -29,10 +32,12 @@ public class Main {
             }
 
             System.out.print("사칙연산 기호 입력: ");
-            char operator = sc.next().charAt(0);
-            
+//            char operatorChar = sc.next().charAt(0);
+            String operatorStr = sc.next();
+
             // Calculator 연산 수행
-            Optional<Integer> optional = calculator.calculate(a, b, operator);
+//            Optional<Integer> optional_ = arithmeticCalculator.calculate(a, b, operatorChar);
+            Optional<Integer> optional = arithmeticCalculator.calculate(a, b, OperatorType.getOperator(operatorStr));
             optional.ifPresent(result -> System.out.println("계산 결과: " + result));
 
             // "exit"를 입력받으면 루프 종료
@@ -42,7 +47,7 @@ public class Main {
                 break;
             }
 
-            System.out.println("연산 결과 데이터: " + calculator.getResultQueue());
+            System.out.println("연산 결과 데이터: " + arithmeticCalculator.getResultQueue());
             System.out.println(SEPARATOR);
 
         }
