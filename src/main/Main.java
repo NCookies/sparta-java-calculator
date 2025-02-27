@@ -15,8 +15,10 @@ public class Main {
 
         ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
 
+        boolean loopFlag = true;
+
         // "exit" 키워드 입력 받기 전까지는 무한루프
-        while (true) {
+        while (loopFlag) {
             CalcParam calcParam;
 
             // 사용자로부터 두 숫자 입력 받기
@@ -57,7 +59,7 @@ public class Main {
 
             // "exit"를 입력받으면 루프 종료
             if (inputHandler.readExitFlag()) {
-                break;
+                loopFlag = false;
             }
 
             outputHandler.printSeparator();
