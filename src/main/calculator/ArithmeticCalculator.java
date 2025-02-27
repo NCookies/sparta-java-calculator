@@ -11,10 +11,10 @@ public class ArithmeticCalculator {
     protected Queue<BigDecimal> resultQueue = new LinkedList<>();
 
     /*
-     * BigDecimal 연산 중 ArithmeticException가 발생하는 경우는 크게 세 가지 경우다.
-     * 1. Division by zero (0으로 나누기 오류)
-     * 2. Non-terminating decimal expansion: 연산 결과가 무한소수일 때 발생. RoundingMode 파라미터 넣어주면 해결
-     * 3. ArithmeticException: Rounding necessary: 연산 결과가 무한소수인데 RoundingMode가 necessary일 때 발생
+     * BigDecimal 연산 중 ArithmeticException가 발생하는 경우는 크게 3개가 있다.
+     * 1. / by zero (0으로 나누기 오류)
+     * 2. Non-terminating decimal expansion; no exact representable decimal result: RoundingMode 파라미터가 설정되지 않은 상태에서 divide(...) 연산 결과가 무한소수일 때 발생
+     * 3. Rounding necessary: RoundingMode가 UNNECESSARY인데 divide(...) 연산 결과가 무한소수일 때 발생
      *
      * 즉, 아래 코드에서 ArithmeticException는 b가 0일 때만 throw 된다.
      */
