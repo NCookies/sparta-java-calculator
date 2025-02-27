@@ -33,12 +33,16 @@ public class Main {
             }
 
             // 연산 수행
-            // calcParam을 통째로 파라미터로 넘기고 싶지만 제네릭을 사용해야 해서 패스
-            Optional<BigDecimal> optional = arithmeticCalculator.calculate(
-                    calcParam.numX(),
-                    calcParam.numY(),
-                    calcParam.operatorType());
-            optional.ifPresent(result -> outputHandler.printCalcResult(String.valueOf(result)));
+            try {
+                // calcParam을 통째로 파라미터로 넘기고 싶지만 제네릭을 사용해야 해서 패스
+                BigDecimal result = arithmeticCalculator.calculate(
+                        calcParam.numX(),
+                        calcParam.numY(),
+                        calcParam.operatorType());
+                outputHandler.printCalcResult(String.valueOf(result));
+            } catch (ArithmeticException e) {
+                outputHandler.printError(e.getMessage());
+            }
 
             outputHandler.printCustomMsg(
                     "연산 결과 기록",

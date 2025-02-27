@@ -4,31 +4,30 @@ import data.OperatorType;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
-import java.util.Optional;
 import java.util.Queue;
 
 public class ArithmeticCalculator {
 
     protected Queue<BigDecimal> resultQueue = new LinkedList<>();
 
-    public <T> Optional<BigDecimal> calculate(T a, T b, OperatorType operatorType) {
-        BigDecimal result;     // 연산 결과
-
+    /*
+     * BigDecimal 연산 중 ArithmeticException가 발생하는 경우는 크게 세 가지 경우다.
+     * 1. Division by zero (0으로 나누기 오류)
+     * 2. Non-terminating decimal expansion: 연산 결과가 무한소수일 때 발생. RoundingMode 파라미터 넣어주면 해결
+     * 3. ArithmeticException: Rounding necessary: 연산 결과가 무한소수인데 RoundingMode가 necessary일 때 발생
+     *
+     * 즉, 아래 코드에서 ArithmeticException는 b가 0일 때만 throw 된다.
+     */
+    public <T> BigDecimal calculate(T a, T b, OperatorType operatorType) throws ArithmeticException {
         // 어떤 데이터 타입이 들어오더라도 BigDecimal 타입으로 변환
         BigDecimal bdA = new BigDecimal(String.valueOf(a));
         BigDecimal bdB = new BigDecimal(String.valueOf(b));
 
-        try {
-            // 연산 수행 후 결과 저장 및 반환
-            result = operatorType.calculate(bdA, bdB);
-            resultQueue.offer(result);
-            return Optional.of(result);
-        } catch (ArithmeticException e) {
-            // 연산 도중 에러가 발생했다면 null 반환
-            System.out.println(e.getMessage());
-            return Optional.empty();
-        }
+        // 연산 수행 후 결과 저장 및 반환
+        BigDecimal result = operatorType.calculate(bdA, bdB);
+        resultQueue.offer(result);
 
+        return result;
     }
 
     public Queue<BigDecimal> getResultQueue() {
