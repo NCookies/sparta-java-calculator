@@ -24,7 +24,7 @@ public class ArithmeticCalculator {
         BigDecimal bdB = new BigDecimal(String.valueOf(b));
 
         // 연산 수행 후 결과 저장 및 반환
-        BigDecimal result = operatorType.calculate(bdA, bdB);
+        BigDecimal result = operatorType.calculate(bdA, bdB).stripTrailingZeros();
         resultQueue.offer(result);
 
         return result;

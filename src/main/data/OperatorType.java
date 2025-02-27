@@ -11,8 +11,7 @@ public enum OperatorType {
     ADD("+", BigDecimal::add),
     SUB("-", BigDecimal::subtract),
     MUL("*", BigDecimal::multiply),
-    DIV("/", (a, b) ->
-            a.divide(b, 10, RoundingMode.HALF_EVEN).stripTrailingZeros());
+    DIV("/", (a, b) -> a.divide(b, 10, RoundingMode.HALF_EVEN));
 
     private final String operator;
     private final BiFunction<BigDecimal, BigDecimal, BigDecimal> calculateFunc;
