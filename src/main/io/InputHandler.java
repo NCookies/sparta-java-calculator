@@ -5,7 +5,6 @@ import data.OperatorType;
 import exception.InvalidOperatorException;
 
 import java.math.BigDecimal;
-import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class InputHandler {

@@ -5,8 +5,6 @@ import io.InputHandler;
 import io.OutputHandler;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -32,7 +30,7 @@ public class Main {
                 continue;
             }
 
-            // 연산 수행
+            // 연산 수행 및 결과 출력
             try {
                 // calcParam을 통째로 파라미터로 넘기고 싶지만 제네릭을 사용해야 해서 패스
                 BigDecimal result = arithmeticCalculator.calculate(
@@ -44,6 +42,7 @@ public class Main {
                 outputHandler.printError(e.getMessage());
             }
 
+            // 연산 결과 관련 출력
             outputHandler.printCustomMsg(
                     "연산 결과 기록",
                     arithmeticCalculator.getResultQueue().stream()

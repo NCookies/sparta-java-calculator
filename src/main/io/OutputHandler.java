@@ -1,8 +1,5 @@
 package io;
 
-import java.math.BigDecimal;
-import java.util.Queue;
-
 public class OutputHandler {
 
     static final String SEPARATOR = "======================================\n";
