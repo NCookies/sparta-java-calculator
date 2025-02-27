@@ -1,6 +1,6 @@
-package xyz.ncookie.calculator;
+package calculator;
 
-import xyz.ncookie.calculator.data.OperatorType;
+import data.OperatorType;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;

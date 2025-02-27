@@ -1,4 +1,4 @@
-package xyz.ncookie.calculator.data;
+package data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

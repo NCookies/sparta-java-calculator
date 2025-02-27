@@ -1,6 +1,5 @@
-package xyz.ncookie.calculator;
-
-import xyz.ncookie.calculator.data.OperatorType;
+import calculator.ArithmeticCalculator;
+import data.OperatorType;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -41,7 +40,7 @@ public class Main {
                 continue;
             }
 
-            // Calculator 연산 수행
+            // calculator.Calculator 연산 수행
             Optional<BigDecimal> optional = arithmeticCalculator.calculate(numX, numY, operator);
             optional.ifPresent(result -> System.out.println("계산 결과: " + result));
 
