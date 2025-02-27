@@ -1,4 +1,6 @@
-package xyz.ncookie.calculator.data;
+package data;
+
+import exception.InvalidOperatorException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -28,6 +30,6 @@ public enum OperatorType {
         return Arrays.stream(values())
                 .filter(op -> op.operator.equals(s))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new InvalidOperatorException("유효하지 않은 연산자입니다."));
     }
 }

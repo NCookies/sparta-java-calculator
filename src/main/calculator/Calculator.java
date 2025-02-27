@@ -1,4 +1,4 @@
-package xyz.ncookie.calculator;
+package calculator;
 
 import java.util.LinkedList;
 import java.util.Optional;
